@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "trev@trev.webfactional.com:/home/trev/repos/tempmail.git"
+    "url": "https://github.com/trevorsenior/node-tempmail.git"
   },
   "author": "Trevor Senior <trevor@tsenior.com> (http://tsenior.com/)",
   "license": "MIT",
