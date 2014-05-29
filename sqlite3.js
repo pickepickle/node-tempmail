@@ -1,9 +1,7 @@
-var sqlite3 = require('sqlite3').verbose()
-	, when = require('when');
+var when = require('when')
+, sqlite3 = require('sqlite3').verbose();
 
-module.exports = sqlite3;
-
-module.exports.run_p = function(db, sql, param) {
+module.exports.run = function(db, sql, param) {
 	var defer = when.defer();
 	db.run(sql, param || [], function(error) {
 		return error ? defer.reject(error) : defer.resolve();
@@ -11,7 +9,7 @@ module.exports.run_p = function(db, sql, param) {
 	return defer.promise;
 };
 
-module.exports.all_p = function(db, sql, param) {
+module.exports.all = function(db, sql, param) {
 	var defer = when.defer();
 	db.all(sql, param || [], function(error, rows) {
 	    return error ? defer.reject(error) : defer.resolve(rows);
@@ -19,7 +17,7 @@ module.exports.all_p = function(db, sql, param) {
 	return defer.promise;
 };
 
-module.exports.newDatabase_p = function() {
+module.exports.getDb = function() {
 	var defer = when.defer();
 	var db = new sqlite3.Database(__dirname + '/tempmail.sqlite');
 	db.once('error', function(error) { if (error) { defer.reject(error); } });

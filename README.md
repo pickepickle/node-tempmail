@@ -20,24 +20,22 @@ to use the CLI interface, install globally with `-g`
 - Specifying only a provider will create a new temporary email address.
 - Specifying a provider + email will return the inbox (in JSON format).
 
-### As a module:
+### As a Node.js module
+
+It follows the same concept:
 
 ```javascript
-var Tempmail = require('tempmail');
+var tempmail = require('tempmail');
 
-// using 10minutemail as our provider
-var provider = new Tempmail('10minutemail.net');
+var provider = '10minutemail.net'; // or '10mm.net'
 
 // Create a new temporary email
-provider.newEmail().then(function(tempEmail) {
-	console.log(tempEmail);
-	var emailAddress = tempEmail.getAddress();
-
+tempmail.new(provider).then(function(tempEmail) {
 	// Retrieve emails from an email address
-	provider.getEmail(emailAddress).then(function(inbox) {
-		console.log(inbox); // an array of inbox message objects
-	});
-}).done();
+	return tempmail.get(provider, emailAddress);
+}).done(function (inbox) {
+	console.log(inbox)
+});
 ```
 
 ## Providers
@@ -45,4 +43,4 @@ provider.newEmail().then(function(tempEmail) {
 Providers are services that provide temporary emails.
 
  - [10minutemail.net](http://10minutemail.net/)
- - More if requested
+ - That's it for now.
