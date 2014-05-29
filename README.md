@@ -4,7 +4,12 @@ Easily create temporary emails and fetch their inbox.
 
 ## Usage & Installation
 
-    npm install tempmail
+```
+npm install tempmail
+```
+
+to use the CLI interface, install globally with `-g`
+
 
 ### From the command line
 
@@ -12,33 +17,32 @@ Easily create temporary emails and fetch their inbox.
 ./tempmail <provider> [emailAddress]
 ```
 
-- By specifying only a provider, it will create a new email address.
-- Specifying an email will return the inbox (JSON).
-
+- Specifying only a provider will create a new temporary email address.
+- Specifying a provider + email will return the inbox (in JSON format).
 
 ### As a module:
 
 ```javascript
-var tempmail = require('tempmail');
+var Tempmail = require('tempmail');
 
 // using 10minutemail as our provider
-var provider = new tempmail('10minutemail.net');
+var provider = new Tempmail('10minutemail.net');
 
 // Create a new temporary email
-provider.newTempEmail(provider).then(function(tempEmail) {
+provider.newEmail().then(function(tempEmail) {
 	console.log(tempEmail);
 	var emailAddress = tempEmail.getAddress();
 
 	// Retrieve emails from an email address
-	provider.readEmailAddress(emailAddress).then(function(inbox) {
+	provider.getEmail(emailAddress).then(function(inbox) {
 		console.log(inbox); // an array of inbox message objects
 	});
-});
+}).done();
 ```
 
 ## Providers
 
- - [10minutemail.net](http://10minutemail.net/)
- - More to come...
+Providers are services that provide temporary emails.
 
-Providers are services that provide temporary emails. See the example above on how to use a specific provider.
+ - [10minutemail.net](http://10minutemail.net/)
+ - More if requested
