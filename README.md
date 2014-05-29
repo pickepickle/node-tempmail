@@ -20,9 +20,24 @@ to use the CLI interface, install globally with `-g`
 - Specifying only a provider will create a new temporary email address.
 - Specifying a provider + email will return the inbox (in JSON format).
 
+e.g.
+
+```javascript
+[
+    {
+        "from": "John Smith<john@example.com>",
+        "to": "zqm46662@ssoia.com",
+        "subject": "sample subject",
+        "date": "just now",
+        "content": "\n\t <p>3434234</p>\n\t"
+    },
+	{ /* another email message ... */ }
+]
+```
+
 ### As a Node.js module
 
-It follows the same concept:
+It follows the same concept, and returns the inbox array vs. a JSON representation of it.
 
 ```javascript
 var tempmail = require('tempmail');
