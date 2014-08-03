@@ -11,7 +11,7 @@ function getProvider(provider) {
 			return new Provider(_10minutemailnet);
 	}
 
-	throw new Error('invalid provider');
+	throw new Error('Invalid provider specified');
 }
 
 exports.new = function(provider) {
